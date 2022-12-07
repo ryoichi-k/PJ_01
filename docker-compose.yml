@@ -21,13 +21,26 @@ services:
       - ${MYSQL_PORT}:3306
     environment:
       MYSQL_DATABASE: database
-      MYSQL_USER: user
+      MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       TZ: "Asia/Tokyo"
     volumes:
       - mysql-data:/var/lib/mysql
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    depends_on:
+      - db
+    container_name: "phpmyadmin"
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS="db"
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
   web:
     build:
       context: ./docker/web
@@ -37,9 +50,23 @@ services:
       - ${NGINX_PORT}:80
     depends_on:
       - php
+      - mailhog
     volumes:
       - ./src/:/app
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - ${MAILHOG_PORT}:8025
+    environment:
+      MH_STORAGE: maildir
+      MH_MAILDIR_PATH: /tmp
+    volumes:
+      - maildir:/tmp
+
 
 
 volumes:
   mysql-data:
+  maildir: {}
