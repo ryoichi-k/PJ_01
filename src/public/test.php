@@ -1,4 +1,4 @@
 <?php
 
-echo 'test.phpです';
+echo 'test.phpだよ～';
 phpinfo();
