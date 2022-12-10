@@ -10,6 +10,23 @@ docker -- 各種Dockerfile
 
 src -- Laravelのプロジェクトファイル。コンテナ内ではappにマウント
 
+## Laravelでの新規プロジェクト作成
+
+phpコンテナ内でフォルダが何もないことをlsで確認する。
+
+phpコンテナ（phpのコンテナ）内で下記コマンドを実行。プロジェクト名は不要。
+```php
+composer create-project --prefer-dist "laravel/laravel=^8.*" .
+```
+
+localhost:8081にアクセスして、ブラウザでLaravelのウェルカムページが表示できるかを確認。
+
+この時に、storageのpermissionエラーが出るので下記コマンドを実行。
+
+```php
+chmod -R 777 /storage
+```
+
 ## Laravel側の設定（laravel新規プロジェクト作成後に設定）
 場所　src > config > app.php
 
