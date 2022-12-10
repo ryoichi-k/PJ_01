@@ -26,3 +26,12 @@ src -- Laravelのプロジェクトファイル。コンテナ内ではappにマ
 'faker_locale' => 'ja_JP',
 ```
 
+場所 src
+
+```php
+php -r "copy('https://readouble.com/laravel/8.x/ja/install-ja-lang-files.php', 'install-ja-lang.php');"
+php -f install-ja-lang.php
+php -r "unlink('install-ja-lang.php');"
+```
+
+上記コマンドを実行すれば、自動的にファイルが生成される。
