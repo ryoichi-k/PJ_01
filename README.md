@@ -9,3 +9,20 @@ Dockerfile,composeファイルと環境を自作。本環境をクローンす�
 docker -- 各種Dockerfile
 
 src -- Laravelのプロジェクトファイル。コンテナ内ではappにマウント
+
+## Laravel側の設定（laravel新規プロジェクト作成後に設定）
+場所　src > config > app.php
+
+```php
+'timezone' => 'Asia/Tokyo',
+```
+
+
+```php
+'locale' => 'ja',
+```
+
+```php
+'faker_locale' => 'ja_JP',
+```
+
