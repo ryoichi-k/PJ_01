@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HelloController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/top', function () {
+    return view('app');
+});
+// Route::get('hello', function () {
+//     return view('app');
+// });
+
+Route::get('/contact', [HelloController::class, 'index']);

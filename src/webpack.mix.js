@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require("laravel-mix");
 
 /*
  |--------------------------------------------------------------------------
@@ -10,8 +10,20 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+// var HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
+// module.exports = {
+//     plugins: [new HardSourceWebpackPlugin()],
+// };
+// mix.webpackConfig({
+//     watchOptions: {
+//         ignored: /node_modules/
+//     },
+// });
+
+mix.js("resources/js/app.js", "public/js")
+    .postCss("resources/css/app.css", "public/css", [
         //
-    ]);
+    ])
+    .vue();
+// .sass("resources/sass/app.scss", "public/css");
